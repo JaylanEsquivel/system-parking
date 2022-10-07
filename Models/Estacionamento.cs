@@ -25,25 +25,78 @@ namespace system_parking.Models
 
         public void AdicionarCarro() { 
 
+                Console.WriteLine("Qual a Placa do Carro?");
+                string placaCarro = Console.ReadLine();
+
+                string[] carros = this.Carros;
+                bool adicionado = false;
+                for(int i = 0; i < carros.Length; i++){
+                    if(carros[i] == "" || string.IsNullOrWhiteSpace(carros[i]) && adicionado == false){
+                        this.Carros[i] = placaCarro;
+                        adicionado = true;
+                    }
+                }
+
+                if (adicionado == false) {
+                    Console.WriteLine("Desculpe mais o estacionamento está Lotado!");
+                }
+
+                this.Carros = carros;
         }
 
         public void RemoverCarro() { 
 
+               string[] carros = this.Carros;
+                string listCarros = "";
+
+                for(int i = 0; i < carros.Length; i++){
+                    if(carros[i] != "" || !string.IsNullOrWhiteSpace(carros[i])){
+                        listCarros += carros[i]+" | ";
+                    }
+                }
+            
+                Console.WriteLine(listCarros);
+                Console.WriteLine("Qual a Placa do Carro que deseja Remover?");
+                string placaCarro = Console.ReadLine();
+
+                bool removido = false;
+                for(int i = 0; i < carros.Length; i++){
+                    if(removido == false && placaCarro == this.Carros[i]){
+                        this.Carros[i] = "";
+                        removido = true;
+                    }
+                }
+
+                if (removido == false) {
+                    Console.WriteLine("Desculpe a Placa não foi Localizada.");
+                }else {
+                    Console.WriteLine("Quantas horas o carro ficou no estacionamento?");
+                    int horasNoEstacionamento = int.Parse(Console.ReadLine());
+                    decimal valorFinal = this.CalcularValorFinal(horasNoEstacionamento);
+                    Console.WriteLine($"O Carro: {placaCarro} ficou {horasNoEstacionamento} hr, Valor a ser pago: R$ {valorFinal}");
+                }
+
+            this.Carros = carros;
         }
 
         public void ListarCarrosEstacionado() {
             string[] carros = this.Carros;
 
-            for(int i = 0; i < carros.Length; i++){
+              for(int i = 0; i < carros.Length; i++){
                  Console.WriteLine($"Posição n° {i+1} - {carros[i]}");
               }
-                 Console.WriteLine("Obrigado!");
         }
 
-        public decimal CalcularValorFinal() {
-            decimal total = 20;
+        public decimal CalcularValorFinal(int horasEstacionado) {
+
+            decimal total = this.PrecoEntrada + (this.PrecoHora * horasEstacionado);
 
             return total;
         }
+
+        public void ExibirConfiguracoes() {
+            Console.WriteLine($"VALOR FIXO DE: R$ {this.PrecoEntrada} | VALOR DA HORA: R$ {this.PrecoHora} | NÚMERO DE VAGAS: {this.NumeroVagas}");
+        }
+
     }
 }

@@ -21,7 +21,7 @@ Console.Clear();
 Formatacao formatar = new Formatacao();
 
 string opcao = "a";
-while(opcao != "4"){
+while(opcao != "44"){
 
     //Console.Clear();
     Console.WriteLine("DIGITE A SUA OPÇÃO:");
@@ -36,28 +36,35 @@ while(opcao != "4"){
         switch (opcao)
         {
             case "1":
+                formatar.PularLinha();
                 Console.WriteLine("Cadastrar Carro");
+                myEstacionamento.AdicionarCarro();
                 formatar.QuebraLinha();
-
                 break;
             case "2":
+                formatar.PularLinha();
                 Console.WriteLine("Remover Carro");
+                myEstacionamento.RemoverCarro();
+                formatar.QuebraLinha();
                 break;
             case "3":
-                Console.WriteLine("Listar Carros estacionados");
+                formatar.PularLinha();
+                Console.WriteLine("Listar Carros estacionados:");
+                myEstacionamento.ListarCarrosEstacionado();
+                formatar.QuebraLinha();
                 break;
             case "4":
-                Console.WriteLine("Ver configurações");
+                formatar.PularLinha();
+                myEstacionamento.ExibirConfiguracoes(); 
+                formatar.QuebraLinha();
                 break;
             case "5":
                 Console.WriteLine("Encerrar, Obrigado");
                 Environment.Exit(0);
                 break;
-
             default:
                 Console.WriteLine("Inválido");
                 break;
-
         }
 
 }

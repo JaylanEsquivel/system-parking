@@ -13,5 +13,10 @@ namespace system_parking.Models
                 Console.ReadLine();
                 Console.Clear();
         }
+        public void PularLinha() { 
+                Console.WriteLine("_____________________________________");
+                Console.WriteLine("");
+        }
+
     }
 }
