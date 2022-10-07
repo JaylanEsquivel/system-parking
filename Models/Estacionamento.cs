@@ -7,6 +7,12 @@ namespace system_parking.Models
 {
     public class Estacionamento
     {
+        /// <summary>
+        ///     Classe de controle do estacionamento
+        /// </summary>
+        /// <param name="precoEntrada"></param>
+        /// <param name="precoHora"></param>
+        /// <param name="numeroVagas"></param>
         public Estacionamento(decimal precoEntrada, decimal precoHora,int numeroVagas) 
         {
             string[] carros = new string[numeroVagas];

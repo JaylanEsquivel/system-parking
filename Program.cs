@@ -18,7 +18,7 @@ Estacionamento myEstacionamento = new Estacionamento(valorFixo,valorDaHora,quant
 Console.Clear();
 
 //myEstacionamento.ListarCarrosEstacionado();
-Formatacao formatar = new Formatacao();
+Formatacao formatar = new Formatacao(); // struct para organizar quebra de linhas.
 
 string opcao = "a";
 while(opcao != "44"){
